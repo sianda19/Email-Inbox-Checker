@@ -1,0 +1,66 @@
+from plyer import notification
+import imaplib
+from os.path import exists as file_exists
+
+
+# Connect to inbox
+your_mail = "thandokhulu12345@gmail.com"
+your_password = "123456kitu"
+
+imap_server = imaplib.IMAP4_SSL(host='imap.gmail.com')
+imap_server.login(your_mail, your_password)
+
+state = file_exists('Python.txt')
+
+def function_1():
+            mail = imap_server.select('Inbox')
+            b = mail[1][0]
+            function_1.c = b.decode('UTF-8')
+            function_1.c
+            my_file()
+
+def my_file():
+    if state == False:
+        file = open("Python.txt", "w")
+        str = repr(int(function_1.c))
+        file.write(str)
+        file.close()
+        f = open('Python.txt', 'r')
+        if f.mode=='r':
+         contents = f.read()
+         my_file.cv = contents
+         
+    elif state == True:
+        f = open('Python.txt', 'r')
+        if f.mode=='r':
+            contents = f.read()
+            my_file.cv = contents
+            my_file.cv
+
+def increase(): 
+    x = int(function_1.c) 
+    file = open("Python.txt", "w")
+    str = repr(x)
+    file.write(str)
+    file.close()
+
+def function_2():
+    function_1()
+    e = int(function_1.c)- int(my_file.cv)
+    inbox_num = int(function_1.c)
+    if inbox_num > int(my_file.cv):
+         notification.notify(
+            title = "EMAIL",
+            message = f"{e} New Email Inboxes",
+            timeout = 50000
+        )
+         increase()
+
+    else:
+        notification.notify(
+            title = "EMAIL",
+            message = "No New Inboxes",
+            timeout = 50000
+        )
+function_2()
+    
